@@ -1,4 +1,4 @@
-﻿using Data.Models;
+﻿using HappyWords.Data.Models;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Driver.Linq;
 
-namespace Data.Repositories
+namespace HappyWords.Data.Repositories
 {
     public static class WordRepository
     {
         public static void Add(Word word)
         {
+            word.AddedAt = DateTime.Now;
             DB.GetCollection<Word>().InsertOne(word);
         }
 

@@ -7,7 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Http;
 
-namespace Web
+namespace HappyWords.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {

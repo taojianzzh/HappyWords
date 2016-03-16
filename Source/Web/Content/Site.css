@@ -5,8 +5,7 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -25,4 +24,16 @@ textarea {
 
 div#add_word {
     max-width: 300px;
+}
+
+#word_list::after {
+    
+}
+
+.label.word {
+    float: left;
+    font-size: 20px;
+    padding: 5px 15px;
+    margin-right: 10px;
+    font-weight: normal;
 }

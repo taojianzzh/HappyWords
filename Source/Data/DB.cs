@@ -1,4 +1,4 @@
-﻿using Data.Models;
+﻿using HappyWords.Data.Models;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data
+namespace HappyWords.Data
 {
     public static class DB
     {

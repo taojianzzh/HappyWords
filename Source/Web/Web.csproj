@@ -14,8 +14,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Web</RootNamespace>
-    <AssemblyName>Web</AssemblyName>
+    <RootNamespace>HappyWords.Web</RootNamespace>
+    <AssemblyName>HappyWords.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -163,11 +163,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attributes\HandleApiExceptionAttribute.cs" />
     <Compile Include="Controllers\Api\WordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Exceptions\BadRequestException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,16 +224,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\Site\AdminPage.ts" />
+    <TypeScriptCompile Include="Scripts\Site\HomePage.ts" />
     <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
