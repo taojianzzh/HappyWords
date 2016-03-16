@@ -25,6 +25,7 @@ namespace HappyWords.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/fonts.css",
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/site").Include(

@@ -9,7 +9,7 @@
         var wordList = $('#word_list');
         $.get('/api/word', (words) => {
             $.each(words, (i, word) => {
-                wordList.append($('<span class="label label-primary word"></span>').text(word.spelling));
+                wordList.append($('<span class="word"></span>').text(word.spelling));
             });
         });
     }

@@ -10,3 +10,4 @@
 [Oo]bj/
 Source/packages/
 Source/Web/Scripts/Site/*.js
+Source/Web/Scripts/Site/*.js.map

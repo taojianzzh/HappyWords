@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Roboto';
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -26,14 +27,14 @@ div#add_word {
     max-width: 300px;
 }
 
-#word_list::after {
-    
-}
-
-.label.word {
+.word {
+    color: #333;
+    background: #f5f5f5;
     float: left;
-    font-size: 20px;
-    padding: 5px 15px;
-    margin-right: 10px;
+    font-size: 32px;
+    padding: 10px 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
     font-weight: normal;
+    border-radius: 4px;
 }
