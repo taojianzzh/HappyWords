@@ -1,0 +1,12 @@
+.vs/
+*.suo
+
+*.user
+*.dll
+
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+Source/packages/
+Source/Web/Scripts/Site/*.js
