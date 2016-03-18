@@ -1,19 +1,16 @@
-﻿class WordList extends React.Component<Array<Word>, any> {
-    private _words: Array<Word>;
+﻿interface WordListProps extends React.Props<WordList> {
+    words: Word[];
+}
 
-    constructor(words: Array<Word>) {
-        super(words);
-        this._words = words;
-    }
+class WordList extends React.Component<WordListProps, any> {
 
     render() {
-        return <div> {
-            $.map(this._words, (word, i) => {
-                return <span className="word" key={i}>
-                    { word.spelling }
-                </span>;
-            })
-        }
-        </div>
+        return (
+            <div>
+                {this.props.words.map((word, i) => {
+                    return <WordItem word={word} />
+                })}
+            </div>
+        );
     }
 }

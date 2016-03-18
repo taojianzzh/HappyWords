@@ -7,7 +7,7 @@
 
     private _LoadWords() {
         $.get('/api/word', (words: Word[]) => {
-            ReactDOM.render(React.createElement(WordList, words), document.getElementById('word_list'));
+            ReactDOM.render(React.createElement(WordList, { words: words }), document.getElementById('word_list'));
         });
     }
 }
