@@ -8,7 +8,7 @@ class WordList extends React.Component<WordListProps, any> {
         return (
             <div>
                 {this.props.words.map((word, i) => {
-                    return <WordItem word={word} />
+                    return <WordItem word={word} key={word.spelling} />
                 })}
             </div>
         );

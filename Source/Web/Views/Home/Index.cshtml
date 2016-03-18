@@ -4,5 +4,17 @@
 @section scripts {
     <script>new HomePage();</script>
 }
-<h2>My Words</h2>
+<div class="row" id="search_word">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <div class="input-group" id="search_word">
+            <input type="text" class="form-control" placeholder="eg. abc, *abc, abc*, *abc*">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">Search</button>
+            </span>
+        </div>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
 <div id="word_list" class="clearfix"></div>

@@ -244,6 +244,7 @@
     <TypeScriptCompile Include="Scripts\Site\AdminPage.ts" />
     <TypeScriptCompile Include="Scripts\Site\HomePage.ts" />
     <TypeScriptCompile Include="Scripts\Site\Models.d.ts" />
+    <TypeScriptCompile Include="Scripts\Site\SearchBox.ts" />
     <TypeScriptCompile Include="Scripts\Site\WordItem.tsx" />
     <TypeScriptCompile Include="Scripts\Site\WordList.tsx" />
     <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
