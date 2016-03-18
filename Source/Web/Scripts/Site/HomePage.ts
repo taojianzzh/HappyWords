@@ -6,11 +6,8 @@
     }
 
     private _LoadWords() {
-        var wordList = $('#word_list');
-        $.get('/api/word', (words) => {
-            $.each(words, (i, word) => {
-                wordList.append($('<span class="word"></span>').text(word.spelling));
-            });
+        $.get('/api/word', (words: Word[]) => {
+            ReactDOM.render(React.createElement(WordList, words), document.getElementById('word_list'));
         });
     }
 }

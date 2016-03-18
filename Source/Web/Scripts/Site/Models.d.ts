@@ -1,0 +1,3 @@
+﻿interface Word {
+    spelling: string;
+}
