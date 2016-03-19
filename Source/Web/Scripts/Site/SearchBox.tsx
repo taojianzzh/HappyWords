@@ -15,8 +15,6 @@ class SearchBox extends React.Component<SearchBoxProps, any>{
                 <div className="col-lg-3"></div>
                 <div className="col-lg-6">
                     <input type="text" className="form-control" id="search_box_input"
-                           placeholder="eg. abc, *abc, abc*, *abc*"
-                           //value={this.props.keyword}
                            ref="keyword"
                            onChange={this.handleChange.bind(this)}
                     />

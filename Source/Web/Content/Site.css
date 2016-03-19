@@ -23,6 +23,8 @@
 #search_box_input {
     margin-top: 10px;
     margin-bottom: 20px;
+    height: 50px;
+    font-size: 28px;
 }
 
 div#add_word {
