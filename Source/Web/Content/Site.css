@@ -40,3 +40,7 @@ div#add_word {
     font-weight: normal;
     border-radius: 4px;
 }
+
+.word .highlight {
+    color: #ff0000;
+}
