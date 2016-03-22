@@ -27,8 +27,9 @@
     font-size: 28px;
 }
 
-div#add_word {
-    max-width: 400px;
+div#add_word .row div[class^="col-"] {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .word {

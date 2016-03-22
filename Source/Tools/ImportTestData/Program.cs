@@ -12,11 +12,11 @@ namespace HappyWords.ImportTestData
     {
         static void Main(string[] args)
         {
-            var words = _ParseWordsFromFile();
-            foreach (var word in words)
+            var spellings = _ParseWordsFromFile();
+            foreach (var spelling in spellings)
             {
-                WordRepository.Add(new Data.Models.Word(word));
-                Console.Write(word + " ");
+                WordRepository.Add(new Data.Models.Word(spelling, "TBD"));
+                Console.Write(spelling + " ");
             }
 
             Console.WriteLine();

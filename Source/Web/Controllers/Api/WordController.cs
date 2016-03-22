@@ -25,7 +25,7 @@ namespace HappyWords.Web.Controllers.Api
         public void Post([FromBody]Word word)
         {
             _ValidateWord(word);
-            WordRepository.Add(new Data.Models.Word(word.Spelling));
+            WordRepository.Add(new Data.Models.Word(word.Spelling, word.Chinese));
         }
 
         private void _ValidateWord(Word word)
@@ -37,6 +37,10 @@ namespace HappyWords.Web.Controllers.Api
             if (string.IsNullOrWhiteSpace(word.Spelling))
             {
                 throw new BadRequestException("word spelling is requried.");
+            }
+            if (string.IsNullOrWhiteSpace(word.Chinese))
+            {
+                throw new BadRequestException("word chinese is requried.");
             }
         }
     }
