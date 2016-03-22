@@ -16,6 +16,13 @@
     white-space: normal;
 }
 
+#logo {
+    float: left;
+    margin-top: 7px;
+    margin-right: 10px;
+    width: 36px;
+}
+
 .hidden {
     display: none;
 }
