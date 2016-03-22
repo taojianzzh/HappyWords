@@ -1,4 +1,5 @@
-﻿using HappyWords.Web.Exceptions;
+﻿using HappyWords.Data.Exceptions;
+using HappyWords.Web.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace HappyWords.Web.Attributes
             HttpResponseMessage errorResponse = null;
             var exception = context.Exception;
 
-            if (exception is BadRequestException)
+            if (exception is HappyWordsException)
             {
                 errorResponse = context.Request.CreateErrorResponse(HttpStatusCode.BadRequest, _CreateErrorMessage(exception.Message, exception));
             }

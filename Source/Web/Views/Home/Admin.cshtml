@@ -2,20 +2,14 @@
     ViewBag.Title = "Admin";
 }
 @section scripts {
-    <script>new AdminPage();</script>
+    <script>ReactDOM.render(React.createElement(AdminPage), document.getElementById('x'));</script>
 }
 <h2>Admin</h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Add Words</h3>
     </div>
-    <div class="panel-body">
-        <div class="input-group" id="add_word">
-            <input type="text" class="form-control" placeholder="Type word...">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">Add</button>
-            </span>
-        </div>
+    <div class="panel-body" id="x">
     </div>
 </div>
 
