@@ -203,6 +203,7 @@
     <Content Include="Scripts\jquery-2.2.1.min.map" />
     <Content Include="fonts\roboto-normal.woff" />
     <Content Include="fonts\roboto-normal.woff2" />
+    <None Include="Properties\PublishProfiles\PROD.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

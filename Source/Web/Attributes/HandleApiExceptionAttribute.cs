@@ -20,6 +20,7 @@ namespace HappyWords.Web.Attributes
             var exception = context.Exception;
 
             if (exception is HappyWordsException)
+
             {
                 errorResponse = context.Request.CreateErrorResponse(HttpStatusCode.BadRequest, _CreateErrorMessage(exception.Message, exception));
             }

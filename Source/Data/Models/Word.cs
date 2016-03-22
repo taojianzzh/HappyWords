@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using HappyWords.Data.Exceptions;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,12 @@ namespace HappyWords.Data.Models
 
         public Word(string spelling)
         {
-            Spelling = spelling;
+            if (string.IsNullOrWhiteSpace(spelling))
+            {
+                throw new HappyWordsException("Word spelling cannot be empty.");
+            }
+
+            Spelling = spelling.Trim().ToLower();
         }
     }
 }
