@@ -27,12 +27,24 @@
     color: #FFF;
 }
 
+ul.navbar-nav li {
+    font-size: 18px;
+}
+
 .hidden {
     display: none;
 }
 
 #home_page {
     margin-top: 20px;
+    margin-bottom: 20px;
+    height: 700px;
+}
+
+#word_cloud {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #search_box_input {

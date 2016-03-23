@@ -27,7 +27,8 @@ namespace HappyWords.Web
                       "~/Scripts/respond.js",
                       "~/Scripts/react/react.js",
                       "~/Scripts/react/react-dom.js",
-                      "~/Scripts/react/react-dom-server.js"));
+                      "~/Scripts/react/react-dom-server.js",
+                      "~/Scripts/wordcloud2.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
                       "~/Scripts/Site/*.js"));
