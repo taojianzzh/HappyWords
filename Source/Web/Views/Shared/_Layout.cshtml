@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Happy Words</title>
+    <title>@((ViewBag.Title == null ? string.Empty : ViewBag.Title + " - ") + "Happy Words")</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -22,6 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Search", "Search", "Home")</li>
                     <li>@Html.ActionLink("Admin", "Admin", "Home")</li>
                     @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
@@ -36,6 +37,8 @@
         </footer>
     </div>
 
+    @Scripts.Render("~/bundles/libs")
+    @RenderSection("moreLibs", required: false)
     @Scripts.Render("~/bundles/site")
     @RenderSection("scripts", required: false)
 </body>

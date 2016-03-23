@@ -21,13 +21,15 @@ namespace HappyWords.Web
                       "~/Content/fonts.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/site").Include(
+            bundles.Add(new ScriptBundle("~/bundles/libs").Include(
                       "~/Scripts/jquery-{version}.js",
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/react/react.js",
                       "~/Scripts/react/react-dom.js",
-                      "~/Scripts/react/react-dom-server.js",
+                      "~/Scripts/react/react-dom-server.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/site").Include(
                       "~/Scripts/Site/*.js"));
         }
     }

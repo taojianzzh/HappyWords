@@ -23,8 +23,16 @@
     width: 36px;
 }
 
+.navbar-inverse .navbar-brand {
+    color: #FFF;
+}
+
 .hidden {
     display: none;
+}
+
+#home_page {
+    margin-top: 20px;
 }
 
 #search_box_input {

@@ -236,6 +236,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -249,6 +250,7 @@
     <TypeScriptCompile Include="Scripts\Site\Models.d.ts" />
     <TypeScriptCompile Include="Scripts\Site\SearchableWordList.tsx" />
     <TypeScriptCompile Include="Scripts\Site\SearchBox.tsx" />
+    <TypeScriptCompile Include="Scripts\Site\SearchPage.ts" />
     <TypeScriptCompile Include="Scripts\Site\WordForm.tsx" />
     <TypeScriptCompile Include="Scripts\Site\WordItem.tsx" />
     <TypeScriptCompile Include="Scripts\Site\WordList.tsx" />

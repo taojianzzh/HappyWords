@@ -13,6 +13,11 @@ namespace HappyWords.Web.Controllers
             return View();
         }
 
+        public ActionResult Search()
+        {
+            return View();
+        }
+
         public ActionResult Admin()
         {
             return View();

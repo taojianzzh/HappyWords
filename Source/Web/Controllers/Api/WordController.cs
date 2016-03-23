@@ -15,9 +15,14 @@ namespace HappyWords.Web.Controllers.Api
     {
         [HttpGet]
         [Route("")]
-        public List<Word> Get()
+        public List<Word> Get(int? take = null)
         {
-            return WordRepository.Get().Select(w => new Word(w)).ToList();
+            var words = WordRepository.Get().Select(w => new Word(w));
+            if (take != null)
+            {
+                words = words.Take(take.Value);
+            }
+            return words.ToList();
         }
 
         [HttpPost]
