@@ -252,6 +252,7 @@
     <TypeScriptCompile Include="Scripts\Site\SearchableWordList.tsx" />
     <TypeScriptCompile Include="Scripts\Site\SearchBox.tsx" />
     <TypeScriptCompile Include="Scripts\Site\SearchPage.ts" />
+    <TypeScriptCompile Include="Scripts\Site\WordCloudFontSize.ts" />
     <TypeScriptCompile Include="Scripts\Site\WordForm.tsx" />
     <TypeScriptCompile Include="Scripts\Site\WordItem.tsx" />
     <TypeScriptCompile Include="Scripts\Site\WordList.tsx" />

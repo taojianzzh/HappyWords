@@ -10,13 +10,14 @@ class HomePage {
     }
 
     private _LoadWords() {
-        $.get('/api/word?take=100', (words: Word[]) => {
+        $.get('/api/word?take=200', (words: Word[]) => {
             this._DrawWordCloud(words);
         });
     }
 
     private _DrawWordCloud(words: Word[]) {
 
+        var fontSize = new WordCloudFontSize(10, 120, words.length);
         var width = $('#home_page').width();
         var height = $('#home_page').height();
         var newWidth = Math.round(Math.min(width, height / 3 * 4));
@@ -27,7 +28,7 @@ class HomePage {
 
         var options = {
             list: words.map((w) => {
-                return [w.spelling, Math.random() * 50]
+                return [w.spelling, fontSize.next()]
             }).sort((a, b) => {
                 return (a[1] < b[1] ? 1 : -1);
             }),
