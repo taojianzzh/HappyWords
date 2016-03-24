@@ -39,9 +39,11 @@ class HomePage {
             wait: 10,
             shuffle: true,
             rotateRatio: 0.3,
-            shape: 'circle'
+            shape: 'circle',
+            color: () => {
+                return Colors.random();
+            }
         };
-
         
         WordCloud(canvas[0], options);
     }
