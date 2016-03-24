@@ -57,6 +57,7 @@ class WordForm extends React.Component<WordFormProps, any> {
                 success: () => {
                     this.props.onSuccess(word);
                     (this.refs['spelling'] as HTMLInputElement).value = '';
+                    (this.refs['spelling'] as HTMLInputElement).focus();
                     (this.refs['chinese'] as HTMLInputElement).value = '';
                 },
                 error: (xhr, textStatus, errorThrown) => {
