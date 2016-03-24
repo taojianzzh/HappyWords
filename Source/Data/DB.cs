@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,15 +12,16 @@ namespace HappyWords.Data
     public static class DB
     {
         private static IMongoDatabase _db;
-        private static bool _initialized = false;
-        private static object _initLocker = new object();
         private static Dictionary<Type, string> _mappings = new Dictionary<Type, string>();
+
+        static DB()
+        {
+            _Init();
+        }
 
         public static IMongoCollection<T> GetCollection<T>()
             where T : IMongoObject
         {
-            _Init();
-
             string collectionName;
             if (!_mappings.TryGetValue(typeof(T), out collectionName))
             {
@@ -31,19 +33,24 @@ namespace HappyWords.Data
 
         private static void _Init()
         {
-            if (!_initialized)
+            var client = new MongoClient();
+            _db = client.GetDatabase("HappyWords");
+
+            _mappings.Add(typeof(Word), "Words");
+            _EnsureIndexes();
+        }
+
+        private static void _EnsureIndexes()
+        {
+            foreach (var mapping in _mappings)
             {
-                lock(_initLocker)
+                var methodInfo = mapping.Key.GetMethod("EnsureIndex", BindingFlags.Public | BindingFlags.Static);
+                if (methodInfo != null)
                 {
-                    if (!_initialized)
-                    {
-                        var client = new MongoClient();
-                        _db = client.GetDatabase("HappyWords");
-
-                        _mappings.Add(typeof(Word), "Words");
-
-                        _initialized = true;
-                    }
+                    var collection = typeof(DB).GetMethod("GetCollection")
+                                                         .MakeGenericMethod(mapping.Key)
+                                                         .Invoke(null, null);
+                    methodInfo.Invoke(null, new object[] { collection });
                 }
             }
         }

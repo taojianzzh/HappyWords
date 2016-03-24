@@ -35,7 +35,7 @@ namespace HappyWords.Data.Repositories
 
         public static List<Word> Get()
         {
-            return DB.GetCollection<Word>().AsQueryable().ToList();
+            return DB.GetCollection<Word>().AsQueryable().OrderByDescending(w => w.AddedAt).ToList();
         }
     }
 }

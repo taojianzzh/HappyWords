@@ -1,5 +1,5 @@
 ﻿interface AdminPageState {
-    alert?: AlertModel;
+    words: Word[];
 }
 
 class AdminPage extends React.Component<any, AdminPageState> {
@@ -7,38 +7,31 @@ class AdminPage extends React.Component<any, AdminPageState> {
     constructor() {
         super();
         this.state = {
-            alert: {
-                type: AlertType.Hidden
-            }
+            words: []
         }
+    }
+
+    componentDidMount() {
+        $.get('/api/word', (words: Word[]) => {
+            this.setState({
+                words: words
+            });
+        });
     }
 
     render() {
         return (
             <div>
-                <Alert model={this.state.alert} />
-                <WordForm onSuccess={this.onWordAddedSuccess.bind(this)} onError={this.onWordAddedError.bind(this)} />
+                <AddWordPanel onWordAdded={this._handleWordAdded.bind(this) } />
+                <WordListPanel words={this.state.words} />
             </div>
         )
     }
 
-    onWordAddedSuccess(word: Word) {
+    private _handleWordAdded(word: Word) {
+        var words = [word].concat(this.state.words);
         this.setState({
-            alert: {
-                type: AlertType.Success,
-                title: 'Success',
-                message: 'Your word ' + word.spelling + ' has been added.'
-            }
-        });
-    }
-
-    onWordAddedError(word: Word, title:string, message: string) {
-        this.setState({
-            alert: {
-                type: AlertType.Danger,
-                title: title,
-                message: message
-            }
+            words: words
         });
     }
 }

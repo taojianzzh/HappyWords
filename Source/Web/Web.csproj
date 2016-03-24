@@ -245,6 +245,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Site\AddWordPanel.tsx" />
     <TypeScriptCompile Include="Scripts\Site\AdminPage.tsx" />
     <TypeScriptCompile Include="Scripts\Site\Alert.tsx" />
     <TypeScriptCompile Include="Scripts\Site\Colors.ts" />
@@ -257,6 +258,7 @@
     <TypeScriptCompile Include="Scripts\Site\WordForm.tsx" />
     <TypeScriptCompile Include="Scripts\Site\WordItem.tsx" />
     <TypeScriptCompile Include="Scripts\Site\WordList.tsx" />
+    <TypeScriptCompile Include="Scripts\Site\WordListPanel.tsx" />
     <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\react\react-dom.d.ts" />

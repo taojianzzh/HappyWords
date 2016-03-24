@@ -1,6 +1,7 @@
 ﻿using HappyWords.Data.Exceptions;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,11 @@ namespace HappyWords.Data.Models
 
             Spelling = spelling.Trim().ToLower();
             Chinese = chinese.Trim();
+        }
+
+        public static void EnsureIndex(IMongoCollection<Word> mongoCollection)
+        {
+            mongoCollection.Indexes.CreateOne(new IndexKeysDefinitionBuilder<Word>().Ascending(w => w.AddedAt));
         }
     }
 }
