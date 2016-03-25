@@ -15,7 +15,8 @@ class WordForm extends React.Component<WordFormProps, any> {
                             <input type="text"
                                 className="form-control"
                                 placeholder="English spelling..."
-                                ref="spelling" />
+                                ref="spelling"
+                                onKeyPress={this.handleKeyPress.bind(this)}/>
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-6">
@@ -25,7 +26,7 @@ class WordForm extends React.Component<WordFormProps, any> {
                                 className="form-control"
                                 placeholder="中文..."
                                 ref="chinese"
-                                onKeyPress={this.handleKeyPress.bind(this) } />
+                                onKeyPress={this.handleKeyPress.bind(this)} />
                         </div>
                     </div>
                 </div>

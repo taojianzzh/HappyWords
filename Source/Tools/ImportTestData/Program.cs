@@ -1,4 +1,5 @@
-﻿using HappyWords.Data.Repositories;
+﻿using HappyWords.Core.Services;
+using HappyWords.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ namespace HappyWords.ImportTestData
             var spellings = _ParseWordsFromFile();
             foreach (var spelling in spellings)
             {
-                WordRepository.Add(new Data.Models.Word(spelling, "TBD"));
+                WordService.Add(new Data.Models.Word(spelling));
                 Console.Write(spelling + " ");
             }
 

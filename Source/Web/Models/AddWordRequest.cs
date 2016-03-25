@@ -6,17 +6,9 @@ using System.Threading.Tasks;
 
 namespace HappyWords.Web.Models
 {
-    public class Word
+    public class AddWordRequest
     {
         public string Spelling { get; set; }
         public string Chinese { get; set; }
-
-        public Word() { }
-
-        public Word(Data.Models.Word word)
-        {
-            Spelling = word.Spelling;
-            Chinese = word.Chinese;
-        }
     }
 }

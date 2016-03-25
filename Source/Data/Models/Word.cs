@@ -2,6 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,24 +16,28 @@ namespace HappyWords.Data.Models
         [BsonId]
         public string Spelling { get; set; }
         public string Chinese { get; set; }
+        public string USPron { get; set; }
+        public string UKPron { get; set; }
 
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        [JsonIgnore]
         public DateTime AddedAt { get; set; }
 
-        public Word(string spelling, string chinese)
+        public Word(string spelling)
         {
             if (string.IsNullOrWhiteSpace(spelling))
             {
                 throw new HappyWordsException("Word spelling cannot be empty.");
             }
 
-            if (string.IsNullOrWhiteSpace(chinese))
-            {
-                throw new HappyWordsException("Word chinese cannot be empty.");
-            }
-
             Spelling = spelling.Trim().ToLower();
-            Chinese = chinese.Trim();
+            AddedAt = DateTime.Now;
+        }
+
+        public Word(string spelling, string chinese)
+            : this(spelling)
+        {
+            Chinese = chinese;
         }
 
         public static void EnsureIndex(IMongoCollection<Word> mongoCollection)

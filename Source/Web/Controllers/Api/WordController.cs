@@ -1,4 +1,6 @@
-﻿using HappyWords.Data.Repositories;
+﻿using HappyWords.Core.Services;
+using HappyWords.Data.Models;
+using HappyWords.Data.Repositories;
 using HappyWords.Web.Exceptions;
 using HappyWords.Web.Models;
 using System;
@@ -17,36 +19,25 @@ namespace HappyWords.Web.Controllers.Api
         [Route("")]
         public List<Word> Get(int? take = null)
         {
-            var words = WordRepository.Get().Select(w => new Word(w));
             if (take != null)
             {
-                words = words.Take(take.Value);
+                return WordRepository.Get(take.Value);
             }
-            return words.ToList();
+            else
+            {
+                return WordRepository.Get();
+            }
         }
 
         [HttpPost]
         [Route("")]
-        public void Post([FromBody]Word word)
+        public Word Post([FromBody]AddWordRequest request)
         {
-            _ValidateWord(word);
-            WordRepository.Add(new Data.Models.Word(word.Spelling, word.Chinese));
-        }
-
-        private void _ValidateWord(Word word)
-        {
-            if (word == null)
-            {
-                throw new BadRequestException("word is requried.");
-            }
-            if (string.IsNullOrWhiteSpace(word.Spelling))
+            if (string.IsNullOrWhiteSpace(request.Spelling))
             {
                 throw new BadRequestException("word spelling is requried.");
             }
-            if (string.IsNullOrWhiteSpace(word.Chinese))
-            {
-                throw new BadRequestException("word chinese is requried.");
-            }
+            return WordService.Add(new Word(request.Spelling, request.Chinese));
         }
     }
 }
