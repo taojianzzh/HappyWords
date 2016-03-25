@@ -74,3 +74,15 @@ div#add_word .row div[class^="col-"] {
 .word .highlight {
     color: #ff0000;
 }
+
+#word_table {
+    font-size: 16px;
+}
+
+#word_table tr {
+    border-bottom: solid 1px #ddd;
+}
+
+#word_table td {
+    padding: 8px;
+}

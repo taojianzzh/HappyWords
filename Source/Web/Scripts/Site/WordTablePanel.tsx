@@ -1,12 +1,8 @@
-﻿interface WordListPanelProps {
+﻿interface WordTablePanelProps {
     words: Word[];
 }
 
-class WordListPanel extends React.Component<WordListPanelProps, any> {
-
-    constructor() {
-        super();
-    }
+class WordTablePanel extends React.Component<WordTablePanelProps, any> {
 
     render() {
         return (
@@ -15,7 +11,7 @@ class WordListPanel extends React.Component<WordListPanelProps, any> {
                     <h3 className="panel-title">All Words</h3>
                 </div>
                 <div className="panel-body">
-                    <WordList words={this.props.words} keyword='' />
+                    <WordTable words={this.props.words} />
                 </div>
             </div>
         );

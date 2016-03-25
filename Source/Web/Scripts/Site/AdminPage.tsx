@@ -23,7 +23,7 @@ class AdminPage extends React.Component<any, AdminPageState> {
         return (
             <div>
                 <AddWordPanel onWordAdded={this._handleWordAdded.bind(this) } />
-                <WordListPanel words={this.state.words} />
+                <WordTablePanel words={this.state.words} />
             </div>
         )
     }

@@ -1,6 +1,6 @@
 ﻿interface WordFormProps {
     onSuccess: (word: Word) => any;
-    onError: (word: Word, title: string, message: string) => any
+    onError: (word: AddWordRequest, title: string, message: string) => any
 }
 
 class WordForm extends React.Component<WordFormProps, any> {
@@ -46,7 +46,7 @@ class WordForm extends React.Component<WordFormProps, any> {
     }
 
     handleButtonClick() {
-        var word: Word = {
+        var word: AddWordRequest = {
             spelling: (this.refs['spelling'] as HTMLInputElement).value,
             chinese: (this.refs['chinese'] as HTMLInputElement).value
         };
@@ -55,7 +55,7 @@ class WordForm extends React.Component<WordFormProps, any> {
                 method: 'POST',
                 url: '/api/word',
                 data: word,
-                success: () => {
+                success: (word: Word) => {
                     this.props.onSuccess(word);
                     (this.refs['spelling'] as HTMLInputElement).value = '';
                     (this.refs['spelling'] as HTMLInputElement).focus();

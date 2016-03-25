@@ -43,7 +43,7 @@ class AddWordPanel extends React.Component<AddWordPanelProps, AddWordPanelState>
         this.props.onWordAdded && this.props.onWordAdded(word);
     }
 
-    onWordAddedError(word: Word, title: string, message: string) {
+    onWordAddedError(word: AddWordRequest, title: string, message: string) {
         this.setState({
             alert: {
                 type: AlertType.Danger,
