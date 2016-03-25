@@ -21,7 +21,7 @@ class WordForm extends React.Component<WordFormProps, any> {
                     </div>
                     <div className="col-md-6 col-lg-6">
                         <div className="input-group">
-                            <div className="input-group-addon">Chinese</div>
+                            <div className="input-group-addon">Chinese (optional)</div>
                             <input type="text"
                                 className="form-control"
                                 placeholder="中文..."
