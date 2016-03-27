@@ -81,8 +81,21 @@ div#add_word .row div[class^="col-"] {
 
 #word_table tr {
     border-bottom: solid 1px #ddd;
+    cursor: pointer;
 }
+
+    #word_table tr:hover {
+        background: #f2f2f2;
+    }
 
 #word_table td {
     padding: 8px;
+}
+
+#edit_word_modal .input-group {
+    margin-bottom: 15px;
+}
+
+#edit_word_modal .modal-dialog {
+    margin-top: 200px ! important;
 }

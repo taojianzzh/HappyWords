@@ -249,6 +249,7 @@
     <TypeScriptCompile Include="Scripts\Site\AdminPage.tsx" />
     <TypeScriptCompile Include="Scripts\Site\Alert.tsx" />
     <TypeScriptCompile Include="Scripts\Site\Colors.ts" />
+    <TypeScriptCompile Include="Scripts\Site\EditWordModal.tsx" />
     <TypeScriptCompile Include="Scripts\Site\HomePage.ts" />
     <TypeScriptCompile Include="Scripts\Site\Models.d.ts" />
     <TypeScriptCompile Include="Scripts\Site\SearchableWordList.tsx" />
@@ -260,6 +261,7 @@
     <TypeScriptCompile Include="Scripts\Site\WordList.tsx" />
     <TypeScriptCompile Include="Scripts\Site\WordTablePanel.tsx" />
     <TypeScriptCompile Include="Scripts\Site\WordTable.tsx" />
+    <TypeScriptCompile Include="Scripts\Site\WordTableRow.tsx" />
     <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\react\react-dom.d.ts" />
