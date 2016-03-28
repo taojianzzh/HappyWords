@@ -1,22 +1,20 @@
-﻿interface EditWordModalProps {
-    isEditting: boolean;
-    getEdittingWord: () => Word;
+﻿interface EditWordModalState {
+    word: Word;
 }
 
-class EditWordModal extends React.Component<EditWordModalProps, any> {
+class EditWordModal extends React.Component<any, EditWordModalState> {
 
-    render() {
-
-        var word: Word;
-        if (!this.props.isEditting) {
-            word = {
+    constructor() {
+        super();
+        this.state = {
+            word: {
                 spelling: '', chinese: '', ukPron: '', usPron: ''
             }
         }
-        else {
-            word = this.props.getEdittingWord();
-        }
-        
+    }
+
+    render() {
+
         return (
             <div className="modal fade" id="edit_word_modal" tabIndex="-1" role="dialog">
                 <div className="modal-dialog" role="document">
@@ -28,16 +26,15 @@ class EditWordModal extends React.Component<EditWordModalProps, any> {
                         <div className="modal-body">
                             <div className="input-group">
                                 <div className="input-group-addon">Spelling</div>
-                                <input type="text" value={word.spelling}
+                                <input type="text" value={this.state.word.spelling}
                                     className="form-control"
                                     placeholder="English spelling..."
                                     ref="spelling"
-                                    contentEditable={false}
-                                    onChange={this._handleChineseChange.bind(this)} />
+                                    contentEditable={false} />
                             </div>
                             <div className="input-group">
                                 <div className="input-group-addon">Chinese (optional) </div>
-                                <input type="text" defaultValue={word.chinese}
+                                <input type="text" value={this.state.word.chinese}
                                     className="form-control"
                                     placeholder="中文..."
                                     ref="chinese"
@@ -45,14 +42,14 @@ class EditWordModal extends React.Component<EditWordModalProps, any> {
                             </div>
                             <div className="input-group">
                                 <div className="input-group-addon">US Pron.</div>
-                                <input type="text" value={word.usPron}
+                                <input type="text" value={this.state.word.usPron}
                                     className="form-control"
                                     ref="usPron"
                                     onChange={this._handleUsPronChange.bind(this)} />
                             </div>
                             <div className="input-group">
                                 <div className="input-group-addon">UK Pron.</div>
-                                <input type="text" value={word.ukPron}
+                                <input type="text" value={this.state.word.ukPron}
                                     className="form-control"
                                     ref="ukPron"
                                     onChange={this._handleUkPronChange.bind(this)} />
@@ -67,18 +64,29 @@ class EditWordModal extends React.Component<EditWordModalProps, any> {
         )
     }
 
-    show() {
+    show(word: Word) {
+        this.state.word.spelling = word.spelling;
+        this.state.word.chinese = word.chinese;
+        this.state.word.usPron = word.usPron;
+        this.state.word.ukPron = word.ukPron;
+
+        this.setState(this.state);
+
         $('#edit_word_modal').modal();
     }
 
     private _handleChineseChange(event: React.FormEvent) {
+        this.state.word.chinese = (event.target as HTMLInputElement).value;
+        this.setState(this.state);
     }
 
     private _handleUsPronChange(event: React.FormEvent) {
-
+        this.state.word.usPron = (event.target as HTMLInputElement).value;
+        this.setState(this.state);
     }
 
     private _handleUkPronChange(event: React.FormEvent) {
-
+        this.state.word.ukPron = (event.target as HTMLInputElement).value;
+        this.setState(this.state);
     }
 }
