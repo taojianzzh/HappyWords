@@ -30,7 +30,6 @@ namespace HappyWords.Data.Repositories
                     throw;
                 }
             }
-            
         }
 
         public static List<Word> Get()
@@ -41,6 +40,11 @@ namespace HappyWords.Data.Repositories
         public static List<Word> Get(int count)
         {
             return DB.GetCollection<Word>().AsQueryable().OrderByDescending(w => w.AddedAt).Take(count).ToList();
+        }
+
+        public static void Update(Word word)
+        {
+            DB.GetCollection<Word>().ReplaceOne(Builders<Word>.Filter.Eq(w => w.Spelling, word.Spelling), word);
         }
     }
 }

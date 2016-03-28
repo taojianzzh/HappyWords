@@ -39,5 +39,16 @@ namespace HappyWords.Web.Controllers.Api
             }
             return WordService.Add(new Word(request.Spelling, request.Chinese));
         }
+
+        [HttpPut]
+        [Route("")]
+        public Word Put([FromBody]Word request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Spelling))
+            {
+                throw new BadRequestException("word spelling is requried.");
+            }
+            return WordService.Add(new Word(request.Spelling, request.Chinese));
+        }
     }
 }

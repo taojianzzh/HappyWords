@@ -2,7 +2,7 @@
     words: Word[];
 }
 
-class WordTablePanel extends React.Component<WordTablePanelProps, WordTablePanelState> {
+class WordTablePanel extends React.Component<WordTablePanelProps, any> {
 
     constructor() {
         super();
@@ -17,14 +17,16 @@ class WordTablePanel extends React.Component<WordTablePanelProps, WordTablePanel
                 <div className="panel-body">
                     <WordTable words={this.props.words} onRowClick={this._onRowClick.bind(this)} />
                 </div>
-                <EditWordModal ref="edit" />
             </div>
         );
     }
 
     private _onRowClick(word: Word) {
-        var editModel = this.refs['edit'] as EditWordModal;
-        editModel.show(word);
+        
+    }
+
+    private _onWordUpdated(word: Word) {
+
     }
 
 }

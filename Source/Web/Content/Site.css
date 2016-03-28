@@ -92,10 +92,10 @@ div#add_word .row div[class^="col-"] {
     padding: 8px;
 }
 
-#edit_word_modal .input-group {
+.edit-word-modal .input-group {
     margin-bottom: 15px;
 }
 
-#edit_word_modal .modal-dialog {
+.edit-word-modal .modal-dialog {
     margin-top: 200px ! important;
 }
