@@ -37,18 +37,19 @@ namespace HappyWords.Web.Controllers.Api
             {
                 throw new BadRequestException("word spelling is requried.");
             }
-            return WordService.Add(new Word(request.Spelling, request.Chinese));
+            return WordService.Add(request.ConvertToWord());
         }
 
         [HttpPut]
-        [Route("")]
-        public Word Put([FromBody]Word request)
+        [Route("{spelling}")]
+        public Word Put(string spelling, [FromBody]UpdateWordRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.Spelling))
+            if (string.IsNullOrWhiteSpace(spelling))
             {
                 throw new BadRequestException("word spelling is requried.");
             }
-            return WordService.Add(new Word(request.Spelling, request.Chinese));
+
+            return WordService.Update(request.ConvertToWord(spelling));
         }
     }
 }

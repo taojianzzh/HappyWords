@@ -1,13 +1,12 @@
 ﻿interface WordTableProps {
     words: Word[];
-    onRowClick: (word: Word) => any;
 }
 
 class WordTable extends React.Component<WordTableProps, any>{
 
     render() {
         var rows = this.props.words.map((w) => {
-            return <WordTableRow key={w.spelling} word={w} onClick={this._handleRowClick.bind(this) } />
+            return <WordTableRow key={w.spelling} word={w} />
         });
 
         return (
@@ -18,9 +17,4 @@ class WordTable extends React.Component<WordTableProps, any>{
             </table>
         );
     }
-
-    private _handleRowClick(word: Word) {
-        this.props.onRowClick && this.props.onRowClick(word);
-    }
-
 }

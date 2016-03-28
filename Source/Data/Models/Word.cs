@@ -23,6 +23,10 @@ namespace HappyWords.Data.Models
         [JsonIgnore]
         public DateTime AddedAt { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        [JsonIgnore]
+        public DateTime? UpdatedAt { get; set; }
+
         public Word(string spelling)
         {
             if (string.IsNullOrWhiteSpace(spelling))
@@ -40,9 +44,25 @@ namespace HappyWords.Data.Models
             Chinese = chinese;
         }
 
+        public Word(string spelling, string chinese, string usPron, string ukPron)
+            : this(spelling, chinese)
+        {
+            USPron = usPron;
+            UKPron = ukPron;
+        }
+
         public static void EnsureIndex(IMongoCollection<Word> mongoCollection)
         {
             mongoCollection.Indexes.CreateOne(new IndexKeysDefinitionBuilder<Word>().Ascending(w => w.AddedAt));
+            mongoCollection.Indexes.CreateOne(new IndexKeysDefinitionBuilder<Word>().Ascending(w => w.UpdatedAt));
+        }
+
+        public void UpdateFrom(Word word)
+        {
+            Chinese = word.Chinese;
+            USPron = word.USPron;
+            UKPron = word.UKPron;
+            UpdatedAt = DateTime.Now;
         }
     }
 }

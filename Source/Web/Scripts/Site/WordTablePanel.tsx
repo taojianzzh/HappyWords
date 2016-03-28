@@ -15,18 +15,9 @@ class WordTablePanel extends React.Component<WordTablePanelProps, any> {
                     <h3 className="panel-title">All Words</h3>
                 </div>
                 <div className="panel-body">
-                    <WordTable words={this.props.words} onRowClick={this._onRowClick.bind(this)} />
+                    <WordTable words={this.props.words} />
                 </div>
             </div>
         );
     }
-
-    private _onRowClick(word: Word) {
-        
-    }
-
-    private _onWordUpdated(word: Word) {
-
-    }
-
 }

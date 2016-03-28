@@ -43,14 +43,14 @@ namespace HappyWords.Core.Services
             return word;
         }
 
-        public static void Update(Word word)
+        public static Word Update(Word word)
         {
             if (word == null || string.IsNullOrWhiteSpace(word.Spelling))
             {
                 throw new ArgumentException("word");
             }
 
-            WordRepository.Update(word);
+            return WordRepository.Update(word);
         }
     }
 }

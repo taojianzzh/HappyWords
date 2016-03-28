@@ -5,7 +5,6 @@
 }
 
 interface EditWordModalState {
-    word: Word;
     saveButtonDisabled: boolean;
 }
 
@@ -17,7 +16,6 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
 
     componentWillMount() {
         this.state = {
-            word: this.props.word,
             saveButtonDisabled: true
         };
     }
@@ -59,21 +57,21 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
                             </div>
                             <div className="input-group">
                                 <div className="input-group-addon">US Pron.</div>
-                                <input type="text" defaultValue={this.state.word.usPron}
+                                <input type="text" defaultValue={this.props.word.usPron}
                                     className="form-control"
                                     ref="usPron"
                                     onChange={this._handleInputChange.bind(this) } />
                             </div>
                             <div className="input-group">
                                 <div className="input-group-addon">UK Pron.</div>
-                                <input type="text" defaultValue={this.state.word.ukPron}
+                                <input type="text" defaultValue={this.props.word.ukPron}
                                     className="form-control"
                                     ref="ukPron"
                                     onChange={this._handleInputChange.bind(this) } />
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className={saveButtonClassName} onClick={this._saveWord.bind(this) }>Save</button>
+                            <button type="button" className={saveButtonClassName} onClick={ this._saveWord.bind(this) } data-dismiss="modal">Save</button>
                         </div>
                     </div>
                 </div>
@@ -96,7 +94,12 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
     }
 
     private _saveWord() {
-        var word = this.state.word;
+        var word: Word = {
+            spelling: this.props.word.spelling,
+            chinese: (this.refs['chinese'] as HTMLInputElement).value,
+            usPron: (this.refs['usPron'] as HTMLInputElement).value,
+            ukPron: (this.refs['ukPron'] as HTMLInputElement).value
+        };
         $.ajax({
             url: '/api/Word/' + word.spelling,
             method: 'PUT',

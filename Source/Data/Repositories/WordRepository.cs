@@ -15,6 +15,7 @@ namespace HappyWords.Data.Repositories
         public static void Add(Word word)
         {
             word.AddedAt = DateTime.Now;
+
             try
             {
                 DB.GetCollection<Word>().InsertOne(word);
@@ -42,9 +43,13 @@ namespace HappyWords.Data.Repositories
             return DB.GetCollection<Word>().AsQueryable().OrderByDescending(w => w.AddedAt).Take(count).ToList();
         }
 
-        public static void Update(Word word)
+        public static Word Update(Word word)
         {
-            DB.GetCollection<Word>().ReplaceOne(Builders<Word>.Filter.Eq(w => w.Spelling, word.Spelling), word);
+            var wordCollection = DB.GetCollection<Word>();
+            var dbWord = wordCollection.AsQueryable().FirstOrDefault(w => w.Spelling == word.Spelling);
+            dbWord.UpdateFrom(word);
+            wordCollection.ReplaceOne(Builders<Word>.Filter.Eq(w => w.Spelling, word.Spelling), dbWord);
+            return word;
         }
     }
 }

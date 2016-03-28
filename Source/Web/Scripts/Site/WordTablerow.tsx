@@ -4,7 +4,6 @@
 
 interface WordTableRowProps {
     word: Word;
-    onClick: (word: Word) => any;
 }
 
 class WordTableRow extends React.Component<WordTableRowProps, WordTableRowState> {
@@ -17,18 +16,17 @@ class WordTableRow extends React.Component<WordTableRowProps, WordTableRowState>
     }
 
     render() {
-        var word = this.props.word;
         if (this.state.isEditting) {
             return (
                 <tr>
                     <td>
-                        {word.spelling}
+                        {this.props.word.spelling}
                     </td>
                     <td>
-                        {word.usPron}
+                        {this.props.word.usPron}
                     </td>
                     <td>
-                        {word.chinese}
+                        {this.props.word.chinese}
                     </td>
                     <td>
                         <EditWordModal word={this.props.word}
@@ -36,23 +34,23 @@ class WordTableRow extends React.Component<WordTableRowProps, WordTableRowState>
                             onClosed={this._onEditModalClosed.bind(this)} />
                     </td>
                 </tr>
-            );
+            )
         } else {
             return (
-                <tr onClick={this._handleClick.bind(this) }>
+                <tr onClick={this._handleClick.bind(this)}>
                     <td>
-                        {word.spelling}
+                        {this.props.word.spelling}
                     </td>
                     <td>
-                        {word.usPron}
+                        {this.props.word.usPron}
                     </td>
                     <td>
-                        {word.chinese}
+                        {this.props.word.chinese}
                     </td>
                     <td>
                     </td>
                 </tr>
-            );
+            )
         }
     }
 
@@ -62,7 +60,8 @@ class WordTableRow extends React.Component<WordTableRowProps, WordTableRowState>
         });
     }
 
-    private _onEditModalSaved() {
+    private _onEditModalSaved(word: Word) {
+        this.props.word = word;
         this.setState({
             isEditting: false
         });

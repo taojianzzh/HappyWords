@@ -10,5 +10,10 @@ namespace HappyWords.Web.Models
     {
         public string Spelling { get; set; }
         public string Chinese { get; set; }
+
+        public Data.Models.Word ConvertToWord()
+        {
+            return new Data.Models.Word(Spelling, Chinese);
+        }
     }
 }
