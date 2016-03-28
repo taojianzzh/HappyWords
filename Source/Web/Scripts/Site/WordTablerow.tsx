@@ -61,7 +61,9 @@ class WordTableRow extends React.Component<WordTableRowProps, WordTableRowState>
     }
 
     private _onEditModalSaved(word: Word) {
-        this.props.word = word;
+        this.props.word.chinese = word.chinese;
+        this.props.word.usPron = word.usPron;
+        this.props.word.ukPron = word.ukPron;
         this.setState({
             isEditting: false
         });

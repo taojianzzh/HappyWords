@@ -79,7 +79,7 @@ div#add_word .row div[class^="col-"] {
     font-size: 16px;
 }
 
-#word_table tr {
+#word_table > tbody > tr {
     border-bottom: solid 1px #ddd;
     cursor: pointer;
 }
@@ -98,4 +98,5 @@ div#add_word .row div[class^="col-"] {
 
 .edit-word-modal .modal-dialog {
     margin-top: 200px ! important;
+    cursor: default;
 }
