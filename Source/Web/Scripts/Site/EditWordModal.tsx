@@ -125,7 +125,7 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
     }
 
     private _clear() {
-        this._updateState('', '', '');
+        this._updateState('', '', '', true);
     }
 
     private _sync() {
@@ -134,11 +134,11 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
         });
     }
 
-    private _updateState(chinese: string, usPron: string, ukPron: string) {
+    private _updateState(chinese: string, usPron: string, ukPron: string, force: boolean = false) {
         this.state.saveButtonDisabled = false;
-        this.state.edittingWord.chinese = chinese;
-        this.state.edittingWord.usPron = usPron;
-        this.state.edittingWord.ukPron = ukPron;
+        this.state.edittingWord.chinese = (force ? chinese : (this.state.edittingWord.chinese || chinese));
+        this.state.edittingWord.usPron = (force ? usPron : (this.state.edittingWord.usPron || usPron));
+        this.state.edittingWord.ukPron = (force ? ukPron : (this.state.edittingWord.ukPron || ukPron));
         this.setState(this.state);
     }
 }
