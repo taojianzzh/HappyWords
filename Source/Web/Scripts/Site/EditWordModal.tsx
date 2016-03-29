@@ -43,7 +43,6 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
                                 <div className="input-group-addon">Spelling</div>
                                 <input type="text" defaultValue={this.props.word.spelling}
                                     className="form-control"
-                                    placeholder="English spelling..."
                                     ref="spelling"
                                     contentEditable={false} readOnly={true} />
                             </div>
@@ -51,7 +50,6 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
                                 <div className="input-group-addon">Chinese (optional) </div>
                                 <input type="text" defaultValue={this.props.word.chinese}
                                     className="form-control"
-                                    placeholder="中文..."
                                     ref="chinese"
                                     onChange={this._handleInputChange.bind(this) } />
                             </div>
@@ -71,17 +69,15 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className={saveButtonClassName} onClick={ this._saveWord.bind(this) } data-dismiss="modal">Save</button>
+                            <button type="button" className={saveButtonClassName}
+                                onClick={ this._saveWord.bind(this) }
+                                data-dismiss="modal"
+                                disabled={this.state.saveButtonDisabled}>Save</button>
                         </div>
                     </div>
                 </div>
             </div>
         )
-    }
-
-    show() {
-        this.state.saveButtonDisabled = true;
-        this.setState(this.state);
     }
 
     private _handleInputChange(event: React.FormEvent) {
