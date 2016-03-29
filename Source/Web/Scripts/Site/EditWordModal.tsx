@@ -6,6 +6,7 @@
 
 interface EditWordModalState {
     saveButtonDisabled: boolean;
+    edittingWord: Word;
 }
 
 class EditWordModal extends React.Component<EditWordModalProps, EditWordModalState> {
@@ -16,7 +17,13 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
 
     componentWillMount() {
         this.state = {
-            saveButtonDisabled: true
+            saveButtonDisabled: true,
+            edittingWord: {
+                spelling: this.props.word.spelling,
+                chinese: this.props.word.chinese,
+                usPron: this.props.word.usPron,
+                ukPron: this.props.word.ukPron
+            }
         };
     }
 
@@ -31,7 +38,7 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
             saveButtonClassName += ' disabled';
         }
         return (
-            <div className="modal fade edit-word-modal" ref="modal" tabIndex="-1" role="dialog">
+            <div className="modal fade edit-word-modal" ref="modal" tabIndex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -41,34 +48,38 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
                         <div className="modal-body">
                             <div className="input-group">
                                 <div className="input-group-addon">Spelling</div>
-                                <input type="text" defaultValue={this.props.word.spelling}
+                                <input type="text" value={this.state.edittingWord.spelling}
                                     className="form-control"
                                     ref="spelling"
                                     contentEditable={false} readOnly={true} />
                             </div>
                             <div className="input-group">
                                 <div className="input-group-addon">Chinese (optional) </div>
-                                <input type="text" defaultValue={this.props.word.chinese}
+                                <input type="text" value={this.state.edittingWord.chinese}
                                     className="form-control"
                                     ref="chinese"
-                                    onChange={this._handleInputChange.bind(this) } />
+                                    onChange={this._handleChineseChange.bind(this) } />
                             </div>
                             <div className="input-group">
                                 <div className="input-group-addon">US Pron.</div>
-                                <input type="text" defaultValue={this.props.word.usPron}
+                                <input type="text" value={this.state.edittingWord.usPron}
                                     className="form-control"
                                     ref="usPron"
-                                    onChange={this._handleInputChange.bind(this) } />
+                                    onChange={this._handleUsPronChange.bind(this) } />
                             </div>
                             <div className="input-group">
                                 <div className="input-group-addon">UK Pron.</div>
-                                <input type="text" defaultValue={this.props.word.ukPron}
+                                <input type="text" value={this.state.edittingWord.ukPron}
                                     className="form-control"
                                     ref="ukPron"
-                                    onChange={this._handleInputChange.bind(this) } />
+                                    onChange={this._handleUkPronChange.bind(this) } />
                             </div>
                         </div>
                         <div className="modal-footer">
+                            <button type="button" className="btn btn-default pull-left"
+                                onClick={ this._clear.bind(this) }>Clear</button>
+                            <button type="button" className="btn btn-default pull-left"
+                                onClick={ this._sync.bind(this) }>Sync from Bing Dict</button>
                             <button type="button" className={saveButtonClassName}
                                 onClick={ this._saveWord.bind(this) }
                                 data-dismiss="modal"
@@ -80,8 +91,21 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
         )
     }
 
-    private _handleInputChange(event: React.FormEvent) {
+    private _handleChineseChange(event: React.FormEvent) {
         this.state.saveButtonDisabled = false;
+        this.state.edittingWord.chinese = (event.target as HTMLInputElement).value;
+        this.setState(this.state);
+    }
+
+    private _handleUsPronChange(event: React.FormEvent) {
+        this.state.saveButtonDisabled = false;
+        this.state.edittingWord.usPron = (event.target as HTMLInputElement).value;
+        this.setState(this.state);
+    }
+
+    private _handleUkPronChange(event: React.FormEvent) {
+        this.state.saveButtonDisabled = false;
+        this.state.edittingWord.ukPron = (event.target as HTMLInputElement).value;
         this.setState(this.state);
     }
 
@@ -90,19 +114,31 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
     }
 
     private _saveWord() {
-        var word: Word = {
-            spelling: this.props.word.spelling,
-            chinese: (this.refs['chinese'] as HTMLInputElement).value,
-            usPron: (this.refs['usPron'] as HTMLInputElement).value,
-            ukPron: (this.refs['ukPron'] as HTMLInputElement).value
-        };
         $.ajax({
-            url: '/api/Word/' + word.spelling,
+            url: '/api/Word/' + this.state.edittingWord.spelling,
             method: 'PUT',
-            data: word,
+            data: this.state.edittingWord,
             success: (word: Word) => {
                 this.props.onSaved && this.props.onSaved(word);
             }
         });
+    }
+
+    private _clear() {
+        this._updateState('', '', '');
+    }
+
+    private _sync() {
+        $.get('/api/bing/' + this.props.word.spelling, (bingDictWord: BingDictWord) => {
+            this._updateState(bingDictWord.chinese, bingDictWord.pron.us, bingDictWord.pron.uk);
+        });
+    }
+
+    private _updateState(chinese: string, usPron: string, ukPron: string) {
+        this.state.saveButtonDisabled = false;
+        this.state.edittingWord.chinese = chinese;
+        this.state.edittingWord.usPron = usPron;
+        this.state.edittingWord.ukPron = ukPron;
+        this.setState(this.state);
     }
 }

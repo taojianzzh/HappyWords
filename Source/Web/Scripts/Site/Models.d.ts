@@ -9,3 +9,11 @@ interface AddWordRequest {
     spelling: string;
     chinese: string;
 }
+
+interface BingDictWord {
+    chinese: string;
+    pron: {
+        us: string;
+        uk: string;
+    }
+}
