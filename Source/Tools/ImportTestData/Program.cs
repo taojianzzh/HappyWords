@@ -14,10 +14,24 @@ namespace HappyWords.ImportTestData
         static void Main(string[] args)
         {
             var spellings = _ParseWordsFromFile();
-            foreach (var spelling in spellings)
+            var dbSpellings = WordRepository.Get().Select(w => w.Spelling).ToList();
+            var existingWords = spellings.Intersect(dbSpellings).ToList();
+            if (existingWords.Count > 0)
             {
-                WordService.Add(new Data.Models.Word(spelling));
-                Console.Write(spelling + " ");
+                Console.WriteLine("{0} duplicate words in db.", existingWords.Count);
+            }
+
+            foreach (var spelling in spellings.Except(dbSpellings))
+            {
+                try
+                {
+                    Console.Write(spelling + " ");
+                    WordService.Add(new Data.Models.Word(spelling));
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
             }
 
             Console.WriteLine();
@@ -27,7 +41,7 @@ namespace HappyWords.ImportTestData
 
         private static List<string> _ParseWordsFromFile()
         {
-            var content = File.ReadAllText("Words.txt");
+            var content = File.ReadAllText("Words2.txt");
             var letters = from c in content.ToCharArray()
                           where char.IsLetter(c) || char.IsWhiteSpace(c)
                           select c;
