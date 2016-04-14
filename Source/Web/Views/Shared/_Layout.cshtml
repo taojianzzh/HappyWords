@@ -24,6 +24,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Search", "Search", "Home")</li>
                     <li>@Html.ActionLink("Admin", "Admin", "Home")</li>
+                    @if (HttpContext.Current.IsDebuggingEnabled)
+                    {
+                    <li>@Html.ActionLink("DevTools", "Index", "Devtools")</li>
+                    }
                     @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
             </div>
