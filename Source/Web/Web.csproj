@@ -260,6 +260,7 @@
     <TypeScriptCompile Include="Scripts\Site\EditWordModal.tsx" />
     <TypeScriptCompile Include="Scripts\Site\HomePage.ts" />
     <TypeScriptCompile Include="Scripts\Site\Models.d.ts" />
+    <TypeScriptCompile Include="Scripts\Site\PronsDropdown.tsx" />
     <TypeScriptCompile Include="Scripts\Site\SearchableWordList.tsx" />
     <TypeScriptCompile Include="Scripts\Site\SearchBox.tsx" />
     <TypeScriptCompile Include="Scripts\Site\SearchPage.ts" />
