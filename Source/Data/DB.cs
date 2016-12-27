@@ -44,12 +44,13 @@ namespace HappyWords.Data
         {
             foreach (var mapping in _mappings)
             {
-                var methodInfo = mapping.Key.GetMethod("EnsureIndex", BindingFlags.Public | BindingFlags.Static);
-                if (methodInfo != null)
+                var typeInfo = mapping.Key.GetTypeInfo();
+                var methodInfo = typeInfo.GetDeclaredMethod("EnsureIndex");
+                if (methodInfo != null && methodInfo.IsPublic && methodInfo.IsStatic)
                 {
-                    var collection = typeof(DB).GetMethod("GetCollection")
-                                                         .MakeGenericMethod(mapping.Key)
-                                                         .Invoke(null, null);
+                    var collection = typeof(DB).GetTypeInfo().GetMethod("GetCollection")
+                                                             .MakeGenericMethod(mapping.Key)
+                                                             .Invoke(null, null);
                     methodInfo.Invoke(null, new object[] { collection });
                 }
             }

@@ -1,15 +1,14 @@
-﻿using HappyWords.Data.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using HappyWords.Data.Repositories;
 
 namespace HappyWords.Web.Controllers.Api
 {
-    [RoutePrefix("api/devTools")]
-    public class DevToolsController : ApiController
+    [Route("api/[controller]")]
+    public class DevToolsController : Controller
     {
         private static readonly HashSet<char> _ignoredPronChars = new HashSet<char>(new char[] { 'ˈ', '(', ')', ',', ',', 'ː', 'ˌ', '\'', '.', ' ' });
 

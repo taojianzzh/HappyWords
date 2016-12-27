@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,13 +13,11 @@ namespace HappyWords.Core.Utils
     {
         public static string Get(string url)
         {
-            HttpWebRequest request = HttpWebRequest.Create(url) as HttpWebRequest;
-            request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US");
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
-            {
-                return reader.ReadToEnd();
-            }
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Accept-Language", "en -US");
+            var getStringTask = httpClient.GetStringAsync(url);
+            getStringTask.Wait();
+            return getStringTask.Result;
         }
     }
 }

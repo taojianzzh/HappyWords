@@ -1,5 +1,6 @@
 ﻿using HappyWords.Data.Exceptions;
 using HappyWords.Web.Exceptions;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,41 +8,39 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Http.Filters;
 
 namespace HappyWords.Web.Attributes
 {
     public class HandleApiExceptionAttribute : ExceptionFilterAttribute
     {
-        public override void OnException(HttpActionExecutedContext context)
+        public override void OnException(ExceptionContext context)
         {
-            HttpResponseMessage errorResponse = null;
-            var exception = context.Exception;
+            //var exception = context.Exception;
 
-            if (exception is HappyWordsException)
+            //if (exception is HappyWordsException)
+            //{
+            //    context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            //    context.Exception = new Exception(_CreateErrorMessage(exception.Message, exception), exception);
+            //}
+            //else
+            //{
+            //    context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            //    context.Exception = new Exception(_CreateErrorMessage("Thre is an unhandled server error", exception), exception);
+            //}
 
-            {
-                errorResponse = context.Request.CreateErrorResponse(HttpStatusCode.BadRequest, _CreateErrorMessage(exception.Message, exception));
-            }
-            else
-            {
-                errorResponse = context.Request.CreateErrorResponse(HttpStatusCode.InternalServerError, _CreateErrorMessage("Thre is an unhandled server error", exception));
-            }
-
-            throw new HttpResponseException(errorResponse);
+            //base.OnException(context);
         }
 
-        private HttpError _CreateErrorMessage(string message, Exception exception)
-        {
-            var error = new HttpError(message);
-#if DEBUG
-            if (exception != null)
-            {
-                error.MessageDetail = exception.ToString();
-            }
-#endif
-            return error;
-        }
+//        private HttpError _CreateErrorMessage(string message, Exception exception)
+//        {
+//            var error = new HttpError(message);
+//#if DEBUG
+//            if (exception != null)
+//            {
+//                error.MessageDetail = exception.ToString();
+//            }
+//#endif
+//            return error;
+//        }
     }
 }

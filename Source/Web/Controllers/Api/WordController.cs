@@ -3,17 +3,15 @@ using HappyWords.Data.Models;
 using HappyWords.Data.Repositories;
 using HappyWords.Web.Exceptions;
 using HappyWords.Web.Models;
-using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+
 
 namespace HappyWords.Web.Controllers.Api
 {
-    [RoutePrefix("api/word")]
-    public class WordController : ApiController
+    [Route("api/word")]
+    public class WordController : Controller
     {
         [HttpGet]
         [Route("")]

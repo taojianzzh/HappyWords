@@ -1,17 +1,16 @@
-﻿using HappyWords.Core.Models;
-using HappyWords.Core.Services;
-using HappyWords.Web.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using HappyWords.Core.Models;
+using HappyWords.Web.Exceptions;
+using HappyWords.Core.Services;
 
 namespace HappyWords.Web.Controllers.Api
 {
-    [RoutePrefix("api/bing")]
-    public class BingController : ApiController
+    [Route("api/[controller]")]
+    public class BingController : Controller
     {
         [HttpGet]
         [Route("{spelling}")]

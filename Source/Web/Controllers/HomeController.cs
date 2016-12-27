@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
-namespace HappyWords.Web.Controllers
+namespace Web.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
@@ -23,10 +23,8 @@ namespace HappyWords.Web.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public IActionResult Error()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
