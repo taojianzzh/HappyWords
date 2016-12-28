@@ -14,7 +14,7 @@ namespace HappyWords.Core.Utils
         public static string Get(string url)
         {
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Accept-Language", "en -US");
+            httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US");
             var getStringTask = httpClient.GetStringAsync(url);
             getStringTask.Wait();
             return getStringTask.Result;

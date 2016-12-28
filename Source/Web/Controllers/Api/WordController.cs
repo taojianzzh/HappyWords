@@ -29,7 +29,7 @@ namespace HappyWords.Web.Controllers.Api
 
         [HttpPost]
         [Route("")]
-        public Word Post([FromBody]AddWordRequest request)
+        public Word Post(AddWordRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Spelling))
             {
@@ -40,7 +40,7 @@ namespace HappyWords.Web.Controllers.Api
 
         [HttpPut]
         [Route("{spelling}")]
-        public Word Put(string spelling, [FromBody]UpdateWordRequest request)
+        public Word Put(string spelling, UpdateWordRequest request)
         {
             if (string.IsNullOrWhiteSpace(spelling))
             {
