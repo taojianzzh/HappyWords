@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using HappyWords.Web.Filters;
+using Microsoft.AspNetCore.Identity.MongoDB;
 
 namespace Web
 {
@@ -32,6 +33,13 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+            });
+
+            services.AddIdentityWithMongoStores(Configuration.GetConnectionString("MongoDB"));
+
             services.AddMvc(config =>
             {
                 config.Filters.Add(typeof(HandleApiExceptionFilter));
@@ -55,6 +63,7 @@ namespace Web
             }
 
             app.UseStaticFiles();
+            app.UseIdentity();
 
             app.UseMvc(routes =>
             {
