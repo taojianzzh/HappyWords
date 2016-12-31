@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HappyWords.Data.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HappyWords.Web.Controllers.Api
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class DevToolsController : Controller
     {

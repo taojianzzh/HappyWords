@@ -3,6 +3,7 @@ using HappyWords.Data.Models;
 using HappyWords.Data.Repositories;
 using HappyWords.Web.Exceptions;
 using HappyWords.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Linq;
 
 namespace HappyWords.Web.Controllers.Api
 {
+    [Authorize]
     [Route("api/word")]
     public class WordController : Controller
     {

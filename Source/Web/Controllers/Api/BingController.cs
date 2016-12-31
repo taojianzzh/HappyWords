@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using HappyWords.Core.Models;
 using HappyWords.Web.Exceptions;
 using HappyWords.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HappyWords.Web.Controllers.Api
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class BingController : Controller
     {

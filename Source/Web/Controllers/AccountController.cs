@@ -12,6 +12,7 @@ using Web.Controllers;
 
 namespace HappyWords.Web.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
