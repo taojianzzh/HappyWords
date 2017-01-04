@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using HappyWords.Web.Filters;
 
 namespace HappyWords.Web.Controllers
 {
     [Authorize]
+    [DevTools]
     public class DevToolsController : Controller
     {
         public ActionResult Index()

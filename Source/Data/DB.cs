@@ -37,6 +37,7 @@ namespace HappyWords.Data
             _db = client.GetDatabase("HappyWords");
 
             _mappings.Add(typeof(Word), "Words");
+            _mappings.Add(typeof(User), "users");
             _EnsureIndexes();
         }
 

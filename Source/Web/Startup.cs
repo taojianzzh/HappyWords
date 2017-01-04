@@ -9,6 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using HappyWords.Web.Filters;
 using Microsoft.AspNetCore.Identity.MongoDB;
+using HappyWords.Core.Interfaces;
+using HappyWords.Core.Services;
+using HappyWords.Data.Interfaces;
+using HappyWords.Data.Repositories;
 
 namespace Web
 {
@@ -44,6 +48,11 @@ namespace Web
             {
                 config.Filters.Add(typeof(HandleApiExceptionFilter));
             });
+
+            services.AddTransient<IWordService, WordService>();
+            services.AddTransient<IBingDictService, BingDictService>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IWordRepository, WordRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

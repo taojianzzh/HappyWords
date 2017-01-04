@@ -1,4 +1,6 @@
-﻿using HappyWords.Data.Models;
+﻿using HappyWords.Core.Interfaces;
+using HappyWords.Data.Interfaces;
+using HappyWords.Data.Models;
 using HappyWords.Data.Repositories;
 using System;
 using System.Collections.Generic;
@@ -8,9 +10,18 @@ using System.Threading.Tasks;
 
 namespace HappyWords.Core.Services
 {
-    public static class WordService
+    public class WordService : IWordService
     {
-        public static Word Add(Word word)
+        private IWordRepository _wordRepository;
+        private IBingDictService _bingDictService;
+
+        public WordService(IWordRepository wordRepository, IBingDictService bingDictService)
+        {
+            _wordRepository = wordRepository;
+            _bingDictService = bingDictService;
+        }
+
+        public async Task AddAsync(Word word)
         {
             if (word == null || string.IsNullOrWhiteSpace(word.Spelling))
             {
@@ -21,7 +32,7 @@ namespace HappyWords.Core.Services
                 string.IsNullOrWhiteSpace(word.UKPron) ||
                 string.IsNullOrWhiteSpace(word.USPron))
             {
-                var bingWord = BingDictService.Get(word.Spelling);
+                var bingWord = _bingDictService.Get(word.Spelling);
                 if (string.IsNullOrWhiteSpace(word.Chinese))
                 {
                     word.Chinese = bingWord.Chinese;
@@ -38,19 +49,17 @@ namespace HappyWords.Core.Services
                 }
             }
 
-            WordRepository.Add(word);
-
-            return word;
+            await _wordRepository.AddAsync(word);
         }
 
-        public static Word Update(Word word)
+        public Word Update(Word word)
         {
             if (word == null || string.IsNullOrWhiteSpace(word.Spelling))
             {
                 throw new ArgumentException("word");
             }
 
-            return WordRepository.Update(word);
+            return _wordRepository.Update(word);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HappyWords.Data.Exceptions;
+using HappyWords.Web.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -14,7 +15,6 @@ namespace HappyWords.Web.Filters
         public void OnException(ExceptionContext context)
         {
             var exception = context.Exception;
-
             if (exception is HappyWordsException)
             {
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;

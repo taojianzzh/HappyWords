@@ -14,6 +14,12 @@ namespace HappyWords.Data.Models
     public class Word : IMongoObject
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string UserId { get; set; }      
+          
         public string Spelling { get; set; }
         public string Chinese { get; set; }
         public string USPron { get; set; }
@@ -27,7 +33,7 @@ namespace HappyWords.Data.Models
         [JsonIgnore]
         public DateTime? UpdatedAt { get; set; }
 
-        public Word(string spelling)
+        public Word(string userId, string spelling)
         {
             if (string.IsNullOrWhiteSpace(spelling))
             {
@@ -35,11 +41,12 @@ namespace HappyWords.Data.Models
             }
 
             Spelling = spelling.Trim().ToLower();
+            UserId = userId;
             AddedAt = DateTime.Now;
         }
 
-        public Word(string spelling, string chinese)
-            : this(spelling)
+        public Word(string userId, string spelling, string chinese)
+            : this(userId, spelling)
         {
             Chinese = chinese;
         }
@@ -55,6 +62,7 @@ namespace HappyWords.Data.Models
         {
             mongoCollection.Indexes.CreateOne(new IndexKeysDefinitionBuilder<Word>().Ascending(w => w.AddedAt));
             mongoCollection.Indexes.CreateOne(new IndexKeysDefinitionBuilder<Word>().Ascending(w => w.UpdatedAt));
+            mongoCollection.Indexes.CreateOne(new IndexKeysDefinitionBuilder<Word>().Ascending(w => w.UserId));
         }
 
         public void UpdateFrom(Word word)

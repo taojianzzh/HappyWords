@@ -7,18 +7,19 @@ using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Driver.Linq;
 using HappyWords.Data.Exceptions;
+using HappyWords.Data.Interfaces;
 
 namespace HappyWords.Data.Repositories
 {
-    public static class WordRepository
+    public class WordRepository : IWordRepository
     {
-        public static void Add(Word word)
+        public async Task AddAsync(Word word)
         {
             word.AddedAt = DateTime.Now;
 
             try
             {
-                DB.GetCollection<Word>().InsertOne(word);
+                await DB.GetCollection<Word>().InsertOneAsync(word);
             }
             catch (MongoWriteException exception)
             {
@@ -33,20 +34,26 @@ namespace HappyWords.Data.Repositories
             }
         }
 
-        public static List<Word> Get()
+        public async Task<List<Word>> GetAsync(string userId)
         {
-            return DB.GetCollection<Word>().AsQueryable().OrderByDescending(w => w.AddedAt).ToList();
+            return await DB.GetCollection<Word>().AsQueryable()
+                .Where(w => w.UserId == userId)
+                .OrderByDescending(w => w.AddedAt)
+                .ToListAsync();
         }
 
-        public static List<Word> Get(int count)
+        public async Task<List<Word>> GetAsync(int count)
         {
-            return DB.GetCollection<Word>().AsQueryable().OrderByDescending(w => w.AddedAt).Take(count).ToList();
+            return await DB.GetCollection<Word>().AsQueryable()
+                .OrderByDescending(w => w.AddedAt)
+                .Take(count)
+                .ToListAsync();
         }
 
-        public static Word Update(Word word)
+        public Word Update(Word word)
         {
             var wordCollection = DB.GetCollection<Word>();
-            var dbWord = wordCollection.AsQueryable().FirstOrDefault(w => w.Spelling == word.Spelling);
+            var dbWord = wordCollection.AsQueryable().FirstOrDefault(w => w.Id == word.Id);
             dbWord.UpdateFrom(word);
             wordCollection.ReplaceOne(Builders<Word>.Filter.Eq(w => w.Spelling, word.Spelling), dbWord);
             return word;

@@ -1,4 +1,5 @@
-﻿using HappyWords.Core.Models;
+﻿using HappyWords.Core.Interfaces;
+using HappyWords.Core.Models;
 using HappyWords.Core.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace HappyWords.Core.Services
 {
-    public static class BingDictService
+    public class BingDictService : IBingDictService
     {
         private const string URL_FORMAT = "http://cn.bing.com/dict/?q={0}";
 
-        public static BingDictWord Get(string spelling)
+        public BingDictWord Get(string spelling)
         {
             var url = string.Format(URL_FORMAT, spelling);
             var response = WebUtils.Get(url);

@@ -10,7 +10,7 @@ class HomePage {
     }
 
     private _LoadWords() {
-        $.get('/api/word?take=200', (words: Word[]) => {
+        $.get('/api/word/top200', (words: Word[]) => {
             this._DrawWordCloud(words);
         });
     }
