@@ -70,6 +70,12 @@ namespace HappyWords.Web.Controllers.Api
             return await _ImportWords("Words1.txt");
         }
 
+        [Route("ImportWords2", Name = "ImportWords2Api")]
+        public async Task<List<Word>> ImportWords2()
+        {
+            return await _ImportWords("Words2.txt");
+        }
+
         private async Task<List<Word>> _ImportWords(string fileName)
         {
             var spellings = _ParseWordsFromFile(fileName);
