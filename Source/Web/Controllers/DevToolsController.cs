@@ -8,8 +8,7 @@ using HappyWords.Web.Filters;
 
 namespace HappyWords.Web.Controllers
 {
-    [Authorize]
-    [DevTools]
+    [Authorize(Roles = "Admin")]
     public class DevToolsController : Controller
     {
         public ActionResult Index()

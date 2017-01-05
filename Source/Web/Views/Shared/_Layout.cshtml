@@ -26,9 +26,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Search", "Search", "Home")</li>
                     <li>@Html.ActionLink("Admin", "Admin", "Home")</li>
-                    <environment names="Development">
+                    @if (Context.User.IsInRole("Admin"))
+                    {
                         <li>@Html.ActionLink("DevTools", "Index", "DevTools")</li>
-                    </environment>
+                    }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

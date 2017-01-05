@@ -14,8 +14,7 @@ using HappyWords.Core.Interfaces;
 
 namespace HappyWords.Web.Controllers.Api
 {
-    [Authorize]
-    [DevTools]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     public class DevToolsController : ControllerBase
     {
