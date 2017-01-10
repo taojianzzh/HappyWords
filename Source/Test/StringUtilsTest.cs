@@ -1,50 +1,49 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HappyWords.Core.Utils;
+using Xunit;
 
-namespace HappyWords.Tests
+namespace HappyWords.Test
 {
-    [TestClass]
     public class StringUtilsTest
     {
-        [TestMethod]
+        [Fact]
         public void StartWithSymbol()
         {
             string s = "<<abc>>xxx";
             string part = StringUtils.GetPart(s, "<<", ">>");
-            Assert.AreEqual("abc", part);
+            Assert.Equal("abc", part);
         }
 
-        [TestMethod]
+        [Fact]
         public void EndWithSymbol()
         {
             string s = "xxx<<abc>>";
             string part = StringUtils.GetPart(s, "<<", ">>");
-            Assert.AreEqual("abc", part);
+            Assert.Equal("abc", part);
         }
 
-        [TestMethod]
+        [Fact]
         public void PartInMiddle()
         {
             string s = "xxx<<abc>>xxx";
             string part = StringUtils.GetPart(s, "<<", ">>");
-            Assert.AreEqual("abc", part);
+            Assert.Equal("abc", part);
         }
 
-        [TestMethod]
+        [Fact]
         public void NotFound()
         {
             string s = "<<abc>>";
             string part = StringUtils.GetPart(s, "x", "y");
-            Assert.AreEqual(string.Empty, part);
+            Assert.Equal(string.Empty, part);
         }
 
-        [TestMethod]
+        [Fact]
         public void NothingAmongSymbols()
         {
             string s = "x<<>>x";
             string part = StringUtils.GetPart(s, "<<", ">>");
-            Assert.AreEqual(string.Empty, part);
+            Assert.Equal(string.Empty, part);
         }
     }
 }
