@@ -38,7 +38,7 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
             saveButtonClassName += ' disabled';
         }
         return (
-            <div className="modal fade edit-word-modal" ref="modal" tabIndex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+            <div className="modal fade edit-word-modal" ref="modal" role="dialog" data-backdrop="static" data-keyboard="false">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -91,21 +91,21 @@ class EditWordModal extends React.Component<EditWordModalProps, EditWordModalSta
         )
     }
 
-    private _handleChineseChange(event: React.FormEvent) {
+    private _handleChineseChange(event: React.FormEvent<HTMLInputElement>) {
         this.state.saveButtonDisabled = false;
-        this.state.edittingWord.chinese = (event.target as HTMLInputElement).value;
+        this.state.edittingWord.chinese = event.currentTarget.value;
         this.setState(this.state);
     }
 
-    private _handleUsPronChange(event: React.FormEvent) {
+    private _handleUsPronChange(event: React.FormEvent<HTMLInputElement>) {
         this.state.saveButtonDisabled = false;
-        this.state.edittingWord.usPron = (event.target as HTMLInputElement).value;
+        this.state.edittingWord.usPron = event.currentTarget.value;
         this.setState(this.state);
     }
 
-    private _handleUkPronChange(event: React.FormEvent) {
+    private _handleUkPronChange(event: React.FormEvent<HTMLInputElement>) {
         this.state.saveButtonDisabled = false;
-        this.state.edittingWord.ukPron = (event.target as HTMLInputElement).value;
+        this.state.edittingWord.ukPron = event.currentTarget.value;
         this.setState(this.state);
     }
 
