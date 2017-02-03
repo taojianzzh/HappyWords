@@ -23,6 +23,10 @@
     width: 36px;
 }
 
+.container > .navbar-header {
+    margin-left: 0;
+}
+
 .navbar-inverse .navbar-brand {
     color: #FFF;
 }
